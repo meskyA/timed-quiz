@@ -1,8 +1,8 @@
-.quiz_box {
+.quiz-container{
     justify-content: center;
-    background-color: aquamarine;
+   
 }
-
+/* Style the start-quiz button */
 .start-button {
         line-height: 12px;
         width: 18px;
@@ -11,8 +11,14 @@
         margin-top: 1px;
         margin-right: 2px;
       }
+.section-title  {
 
-.quiz_box #timer-button .time_left_txt {
+    align-items: center;
+    margin: 10px 45px;
+
+/* Style the timeshow */
+}
+.quiz-container #TimeShow {
     color: black;
     background:aquamarine;
     border: 1px solid black;
@@ -22,57 +28,5 @@
     justify-content: space-between;
     width: 140px;
     border-radius: 5px;
+    margin: 0 0 0px 950px;
 }
-
-        /* color: #004085;
-        background: #cce5ff;
-        border: 1px solid #b8daff;
-        height: 45px;
-        padding: 0 8px;
-        border-radius: 5px; 
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 145px;
-    } */
-    /* .quiz_box header .title{
-        font-size: 20px;
-        font-weight: 600;
-    }
-    .quiz_box header .timer{
-        color: #004085;
-        background: #cce5ff;
-        border: 1px solid #b8daff;
-        height: 45px;
-        padding: 0 8px;
-        border-radius: 5px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 145px;
-    }
-    .quiz_box header .timer .time_left_txt{
-        font-weight: 400;
-        font-size: 17px;
-        user-select: none;
-    }
-    .quiz_box header .timer .timer_sec{
-        font-size: 18px;
-        font-weight: 500;
-        height: 30px;
-        width: 45px;
-        color: #fff;
-        border-radius: 5px;
-        line-height: 30px;
-        text-align: center;
-        background: #343a40;
-        border: 1px solid #343a40;
-        user-select: none;
-    }
-    .quiz_box header .time_line{
-        position: absolute;
-        bottom: 0px;
-        left: 0px;
-        height: 3px;
-        background: #007bff;
-    } */
