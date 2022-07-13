@@ -8,11 +8,13 @@ var preButton= document.querySelector(".preButton");
 var nestButton= document.querySelector(".nextButton");
     
 // Timer countdown after starting the quiz
-function startQuiz() {
+// function startQuiz() {
 
-    var start_btn = startButton ();
-    var startText = document.querySelector(".start-button");
+//     var start_btn = startButton ();
+//     var startText = document.querySelector(".start-button");
+//     startText.value = start_btn;
+//     console.log(startButton());
   
-    startText.value = start_btn;
-    console.log(startButton());
-  }
+    startButton.on('click', function() {
+        console.log('click');
+      });
