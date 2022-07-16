@@ -13,52 +13,105 @@ var result_box = document.querySelector(".result_box");
 var score_areaEl = document.querySelector("#score_area");
 var initialEl = document.querySelector("#initial");
 var buttonDivEl = document.querySelector("#save_btn");
-var high_scoreEl = document.querySelector("#high_scores")
+var high_scoreEl = document.querySelector("#high_scores");
 
-
-
+let questions = [
+  {
+  numb: 1,
+  question: "JavaScript was invented by _______________?",
+  correctAnswer: "Brendan Eich",
+  options: [
+    "1. John Savage",
+    "2. Joshus Henggins",
+    "3. Brendan Eich",
+    "4. Solomon Kibbs",
+  ]
+},
+{
+  numb: 2,
+  question: "What is a function in JavaScript?",
+  correctAnswer: "A set of code that performs a specific task",
+  options: [
+    "1. It is a function key used to coding",
+    "2. A system to isolate and style an element",
+    "3. A starter of JavaScript",
+    "4. A set of code that performs a specific task",
+  ]
+},
+{
+  numb: 3,
+  question: "Methods in JavaScript are _______________",
+  correctAnswer: "Actions that can be performed on objects",
+  options: [
+    "1. Actions that can be performed on objects.",
+    "2. A systematic plan.",
+    "3. A complex way of performing a task",
+    "4. A particular form of procedure for accomplishing something.",
+  ]
+},
+{
+  numb: 4,
+  question: "What are the two ways to invoke a function?",
+  correctAnswer: "Pass by value or pass by reference",
+  options: [
+    "1. By identifying with ID or class.",
+    "2. Pass by value or pass by reference.",
+    "3. By opening box and curly brackets.",
+    "4. None of the above.",
+  ]
+},
+{
+  numb: 5,
+  question: "Some of the most common uses of JavaScript are____?",
+  correctAnswer: "All of the above.",
+  options: [
+    "1. Web development",
+    "2. Web servers",
+    "3. Web applications",
+    "4. All of the above.",
+  ]
+},
+];
 
 // When Start Quiz button is clicked, the first question with options appear
 
 start_btn.onclick = ()=>{
-  quiz_box.classList.add("activeQuiz"); //show quiz box
-  showQuetions(0); //calling showQestions function
-  queCounter(1); //passing 1 parameter to queCounter
-  startTimer(15); //calling startTimer function
-  startTimerLine(0); //calling startTimerLine function
+  quiz_box.classList.add("activeQuiz"); 
+  showQuetions(1); 
+  queCounter(1); 
+  startTimer(15); 
+  startTimerLine(0); 
 }
 
-// Questions
-//  JavaScript was invented by _______________
-//   1. John Savage
-//   2. Joshus Henggins
-//   3. Brendan Eich
-//   4. Solomon Kibbs
+// next_btn.onclick = ()=> {
+//   quiz_box.classList.add("que_text");
+//   showNumb(2);
+// }
+next_btn.onclick = ()=>{
+  if(que_count < questions.length - 1){ 
+      que_count++; 
+      showQuetions(que_count); 
+      queCounter(que_numb); 
+      clearInterval(counter); 
+      clearInterval(counterLine); 
+      startTimer(timeValue); 
+      startTimerLine(widthValue); 
+      timeText.textContent = "Time Left"; 
+      next_btn.classList.remove("show"); 
+  }else{
+      clearInterval(counter); 
+      clearInterval(counterLine); 
+      showResult(); 
+  }
+}
 
-//   What is a function in JavaScript?
-//   1. It is a function key used to coding
-//   2. A system to isolate and style an element
-//   3. A starter of JavaScript 
-//   4. A set of code that performs a specific task 
+let timeValue =  60;
+let que_count = 0;
+let que_numb = 1;
+let userScore = 0;
+let counter;
+let counterLine;
+let widthValue = 0;
 
-//   JavaScript methods are _______________
-//   1. Actions that can be performed on objects. 
-  //   2. A systematic plan 
-  // 3. A complex way of performing a task
-  // 4. a particular form of procedure for accomplishing something
-  
-  //   What are the two ways to invoke a function?
-//   1. By identifying with ID or class
-//   2. Pass by value or pass by reference.
-//   3. By opening box and curly brackets
-//   4. None of the above.
-// 
-// 
-// Some of the most common uses of JavaScript are
-// 1. Web development.
-// 2.  Web applications.
-// 3. Web servers.
-// 4. All of the.
-
-
-
+// const restart_quiz = result_box.querySelector(".buttons .restart");
+// const quit_quiz = result_box.querySelector(".buttons .quit");
