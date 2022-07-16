@@ -1,40 +1,200 @@
-.quiz-container .quiz {
-    justify-content: center;
-    margin: 112px 500px;
+*,* ::before, ::after {
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+ body {
+    padding: 0;
+    margin: 0;
+    background-color: lightgray;
+    
+}
+
+.start_btn, 
+#quiz_box,
+.result-box {
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+} 
+#quiz_box.activeQuiz,
+.result_box.activeResult{
+    opacity: 1;
+    z-index: 5;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+}
+.start_btn button{
+    font-size: 25px;
+    font-weight: 500;
+    color: black;
+    padding: 15px 30px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    background-color: darkgrey;;
+    cursor: pointer;
+    transition: 0.3s ease ;
+}  
+.start_btn button:hover {
+    background: beige;
+    color: black;
+
+}
+#quiz_box {
+   
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 60px;
+    width: 100%;
+    align-items: center;
+    padding: 0 30px;
+    border-radius: 5px 5px 0 0;
+    font-size: 20px;
+    font-weight: 450;
    
 }
-/* Style the start-quiz button */
-.start-button {
-        line-height: 12px;
-        width: 18px;
-        font-size: 12px;
-        font-family: tahoma;
-        position: relative;
-        align-content: center;
-      }
-.section-title  {
-
-    align-items: center;
-    margin: 10px 45px;
-
-/* Style the timeshow */
+#quiz_box {
+    padding: 15px 35px;
+    margin: 5px 0;
+    font-size: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0.9);
 }
-.quiz-container #TimeShow {
-    color: black;
-    background:aquamarine;
-    border: 1px solid black;
-    padding: 0 8px;
+
+#quiz_box header {
+    height: 65px;
+    padding: 0 30px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 140px;
-    border-radius: 5px;
-    margin: 0 0 0px 950px;
 }
-/* .preButton .nextButton {
-    padding: 8 10px;
-    margin-top: 60px;
-    margin-left: 500px;
-    position: absolute;
-} */
+.title {
+    font-size: 30px;
+    font-weight: 600;
+    color: black;
+    align-content: center;
+}
+
+.timer {
+  position: absolute;
+  top: 8px;
+  right: 16px;  
+  display: flex;
+  align-items: center;
+  width: 120px;
+  height: 40px;
+  background: lightpink;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 0 8px;
+
+}
+.timer .timer_text {
+    font-weight: 500;
+    font-size: 15px;
+    user-select: none;
+
+}
+.timer .timer_sec {
+    font-size: 17px;
+    font-weight: 600;
+    background:black;
+    color: white;
+    border-radius: 5px;
+    width: 40px;
+    height: 25px; 
+    text-align: center;
+    user-select: none;
+   
+}
+#quiz_box section {
+    padding: 25px 30px 20px 30px;
+    background-color: whitesmoke;
+
+}
+#quiz_box .que_text {
+    font-size: 25px;
+    font-weight: 500;
+}
+#quiz_box .ans_list {
+    padding: 20px 0;
+    display: block;
+  
+}
+.ans_list .option {
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    border: 1px solid black;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.ans_list .option:hover{
+    background: darkgray;
+    
+}
+#quiz_box footer {
+    padding: 0 30px;
+    height: 65px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+footer .next_btn {
+    height: 45px;
+    padding: 0 15px;
+    font-size: 20px;
+    font-weight: 400;
+    background: darkgray;
+    border: 1px sodid black;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+footer .next_btn:hover{
+    background: transparent;
+}
+.result_box {
+    background: lightgray;
+    width: 500px;
+    padding: 25px 30px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0.9);
+    
+}
+.result_box .complete_text {
+    font-size: 20px;
+    font-weight: 500;
+
+}
+.result_box .over_btn {
+    margin: 0 10px;
+    height: 40px;
+    padding: 0 20px;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 5px;
+    border: 1px solid black;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+
+}

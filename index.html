@@ -10,34 +10,143 @@
 </head>
 <body>
 
- <!-- Quiz Box -->
- <Section class="quiz-container">
-    <header>
-        <div class="quiz">
-            <h1 class="section-title">Quiz Challenge</h1>
-            <p>
-                This is a timed quiz. Please select your response and click on the number of your choice. Good luck!
-            </p>
-            <div class="start-button"><button>Start Quiz</button></div>
-            <button class="preButton">Previous Question</button>
-            <button class="nextButton">Next Question</button>
-        </div>       
-        <div id="timer">
-            <span id="TimeShow">Time Remaining: </span>
-            <div class="timer_sec"></div>
-        </div>
-<!-- Questions -->
-        <section>
-            <div class="question"></div>
-            <ul class="choiceList"></ul>
-            <div class="quizMessage"></div>
-            <div class="result"></div>
-            
-             <div id="results"></div>
-        
-         </section>       
-    </header>
 
+ <!-- Start Button -->
+ <div class="start_btn"><button>Start Quiz</button></div>
+
+ <!-- Quiz Container -->
+ <section id="quiz_box">
+    <header>
+        <div class="title">Quiz Challenge</div>
+    
+        <div class = "timer">
+            <div class = "time_text">Time Left</div>
+            <div class = "timer_sec">15</div>
+        </div>
+        <div class = "time_line"></div>
+    </header>  
+ <!--Questions with multiple choice answers  -->
+    <section>
+        <div class = "que_text">
+            <span>JavaScript was invented by _______________</span>
+            <div class ="ans_list">
+                <div class = "option">
+                    <span>1. John Savage</span>                 
+                </div>
+                <div class = "option">
+                    <span>2. Joshus Heggins</span>
+                </div>
+                <div class = "option">
+                    <span>3. Brendan Eich</span>
+                </div>
+                <div class = "option">
+                    <span>4. Solomon Kibbs</span>
+                </div>         
+            </div>
+        </div>
+        
+    </section>
+    <section>
+        <div class = "que_text">
+            <span>What is a function in JavaScript?</span>
+            <div class ="ans_list">
+                <div class = "option">
+                    <span>1  1. It is a function key used to coding.</span>                 
+                </div>
+                <div class = "option">
+                    <span> 2. A system to isolate and style an element</span>
+                </div>
+                <div class = "option">
+                    <span> 3. A starter of JavaScript </span>
+                </div>
+                <div class = "option">
+                    <span>4. A set of code that performs a specific task4.</span>
+                </div>         
+            </div>
+        </div>     
+    </section>
+    <section>
+        <div class = "que_text">
+            <span>Methods in JavaScript are _______________</span>
+            <div class ="ans_list">
+                <div class = "option">
+                    <span>1. Actions that can be performed on objects.</span>                 
+                </div>
+                <div class = "option">
+                    <span>2. A systematic plan.</span>
+                </div>
+                <div class = "option">
+                    <span>3. A complex way of performing a task.</span>
+                </div>
+                <div class = "option">
+                    <span>4. A particular form of procedure for accomplishing something.</span>
+                </div>         
+            </div>
+        </div>
+        
+    </section>
+    <section>
+        <div class = "que_text">
+            <span>What are the two ways to invoke a function?</span>
+            <div class ="ans_list">
+                <div class = "option">
+                    <span>1. By identifying with ID or class.</span>                 
+                </div>
+                <div class = "option">
+                    <span>2. Pass by value or pass by reference.</span>
+                </div>
+                <div class = "option">
+                    <span>3. By opening box and curly brackets.</span>
+                </div>
+                <div class = "option">
+                    <span>4. None of the above.</span>
+                </div>         
+            </div>
+        </div>
+        
+    </section>
+    <section>
+        <div class = "que_text">
+            <span>Some of the most common uses of JavaScript are____</span>
+            <div class ="ans_list">
+                <div class = "option">
+                    <span>1. Web development.</span>                 
+                </div>
+                <div class = "option">
+                    <span>3. Web servers.</span>
+                </div>
+                <div class = "option">
+                    <span>2.  Web applications.</span>
+                </div>
+                <div class = "option">
+                    <span>4. All of the above.</span>
+                </div>         
+            </div>
+        </div>
+        
+    </section>
+    <footer>
+        <div class = "total_que"></div>
+        <button class = "next_btn">Next</button> 
+    </footer> 
+ </section>
+ 
+ <!-- Result box -->
+            
+ <div class = "result_box">
+     <div class="complete_text">Quiz Completed</div>
+        <div class="buttons">
+            <button class="over_btn">Done!</button>
+        </div>
+        <div id ="score" class="score">
+            <div id="score_area" class="score_area"></div>
+            <form id="initial" class="initial"></form>
+            <div id="save_btn" class="save_btn"></div>
+        </div>
+        <div id ="high_scores" class="high_scores">
+            <div id="high-score-title"></div>
+        </div>
+ </div>
        <script src="./Assets/js/script.js"></script>
 </body>
 </html>
