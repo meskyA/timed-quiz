@@ -1,6 +1,6 @@
 //selecting all required elements
 
-var start_btn = document.querySelector(".start_btn button");
+var start_btn = document.querySelector(".start_btn");
 var quiz_box= document.querySelector("#quiz_box");
 var que_text = document.querySelector(".que_text");
 var timer = document.querySelector(".timer");
@@ -73,5 +73,13 @@ let questions = [
 },
 ];
 start_btn.onclick = ()=>{
-  quiz_box.classList.add("quiz_box", "title"); 
+  quiz_box.classList.add("quiz_box"); 
+}
+function showQuestions() {
+  var quiz_box = document.getElementById("quiz_box");
+  if (quiz_box.style.display === "none") {
+    quiz_box.style.display = "block";
+  } else {
+    quiz_box.style.display = "none";
+  }
 }
