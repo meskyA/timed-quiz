@@ -94,17 +94,15 @@ function showQuestions() {
     quiz_box.style.display = "none";
  }
 }
-// getting questions and options from array
+
 function showQuetions(index){
-  const question = document.querySelector(".question");
-  //creating a new span and div tag for question and option and passing the value using array index
-  let que_tag = '<span>'+ question[index].numb + ". " + question[index].question +'</span>';
-  let option_tag = '<div class="option_list"><span>'+ question[index].option[0] +'</span></div>'
-  + '<div class="option"><span>'+ question[index].option[1] +'</span></div>'
-  + '<div class="option"><span>'+ question[index].option[2] +'</span></div>'
-  + '<div class="option"><span>'+ question[index].option[3] +'</span></div>';
-  question.innerHTML = que_tag; //adding new span tag inside que_tag
-  option_list.innerHTML = option_tag; //adding new div tag inside option_tag
+const question = document.querySelector(".question");
+//creating a new span and div tag for question and option and passing the value using array index
+let que_tag = '<span>'+ questions[index].numb + ". " + questions[index].question +'</span>';
+let option_tag = '<div class="option_list"><span>'+ questions[index].option[0] +'</span></div>'
++ '<div class="option"><span>'+ questions[index].option[1] +'</span></div>'
++ '<div class="option"><span>'+ questions[index].option[2] +'</span></div>'
++ '<div class="option"><span>'+ questions[index].option[3] +'</span></div>';
+question.innerHTML = que_tag; //adding new span tag inside que_tag
+option_list.innerHTML = option_tag; //adding new div tag inside option_tag
 }
-
-
