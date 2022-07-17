@@ -72,46 +72,6 @@ let questions = [
   ]
 },
 ];
-
-// When Start Quiz button is clicked, the first question with options appear
-
 start_btn.onclick = ()=>{
-  quiz_box.classList.add("activeQuiz"); 
-  showQuetions(1); 
-  queCounter(1); 
-  startTimer(15); 
-  startTimerLine(0); 
+  quiz_box.classList.add("quiz_box", "title"); 
 }
-
-// next_btn.onclick = ()=> {
-//   quiz_box.classList.add("que_text");
-//   showNumb(2);
-// }
-next_btn.onclick = ()=>{
-  if(que_count < questions.length - 1){ 
-      que_count++; 
-      showQuetions(que_count); 
-      queCounter(que_numb); 
-      clearInterval(counter); 
-      clearInterval(counterLine); 
-      startTimer(timeValue); 
-      startTimerLine(widthValue); 
-      timeText.textContent = "Time Left"; 
-      next_btn.classList.remove("show"); 
-  }else{
-      clearInterval(counter); 
-      clearInterval(counterLine); 
-      showResult(); 
-  }
-}
-
-let timeValue =  60;
-let que_count = 0;
-let que_numb = 1;
-let userScore = 0;
-let counter;
-let counterLine;
-let widthValue = 0;
-
-// const restart_quiz = result_box.querySelector(".buttons .restart");
-// const quit_quiz = result_box.querySelector(".buttons .quit");

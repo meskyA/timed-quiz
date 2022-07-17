@@ -62,9 +62,8 @@
     padding: 15px 35px;
     margin: 5px 0;
     font-size: 20px;
-    opacity: 0;
-    pointer-events: none;
-    transform: translate(-50%, -50%) scale(0.9);
+    display: none;
+    
 }
 
 #quiz_box header {
@@ -122,12 +121,12 @@
     font-size: 25px;
     font-weight: 500;
 }
-#quiz_box .ans_list {
+#quiz_box .option_list {
     padding: 20px 0;
     display: block;
   
 }
-.ans_list .option {
+.option_list .option {
     padding: 8px 12px;
     margin-bottom: 12px;
     border: 1px solid black;
@@ -138,10 +137,11 @@
     cursor: pointer;
     transition: all 0.3s ease-in-out;
 }
-.ans_list .option:hover{
+.option_list .option:hover{
     background: darkgray;
-    
 }
+
+
 #quiz_box footer {
     padding: 0 30px;
     height: 65px;
@@ -151,7 +151,7 @@
     justify-content: space-between;
 
 }
-footer .next_btn {
+.next_btn {
     height: 45px;
     padding: 0 15px;
     font-size: 20px;
@@ -161,8 +161,9 @@ footer .next_btn {
     border-radius: 5px;
     cursor: pointer;
     transition: 0.3s ease;
+
 }
-footer .next_btn:hover{
+.next_btn:hover{
     background: transparent;
 }
 .result_box {
@@ -175,9 +176,7 @@ footer .next_btn:hover{
     text-align: center;
     align-items: center;
     justify-content: space-between;
-    opacity: 0;
-    pointer-events: none;
-    transform: translate(-50%, -50%) scale(0.9);
+    display: none;
     
 }
 .result_box .complete_text {
