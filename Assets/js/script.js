@@ -2,7 +2,7 @@
 
 var start_btn = document.querySelector(".start_btn");
 var quiz_box= document.querySelector("#quiz_box");
-var que_text = document.querySelector(".que_text");
+var question = document.querySelector(".question");
 var timer = document.querySelector(".timer");
 var time_line = document.querySelector("header .time_line");
 var time_text = document.querySelector(".timer .time_left_txt");
@@ -72,14 +72,39 @@ let questions = [
   ]
 },
 ];
-start_btn.onclick = ()=>{
-  quiz_box.classList.add("quiz_box"); 
-}
+// start_btn.onclick = ()=>{
+//   quiz_box.classList.add("quiz_box"); 
+// }
+// function showQuestions() {
+//   var quiz_box = document.getElementById("quiz_box");
+//   if (quiz_box.style.display === "none") {
+//     quiz_box.style.display = "block";
+//   } else {
+//     quiz_box.style.display = "none";
+//   }
+// }
+start_btn.addEventListener('click', showQuestions);
+quiz_box.classList.add("quiz_box"); 
 function showQuestions() {
   var quiz_box = document.getElementById("quiz_box");
+  quiz_box.classList.add("quiz_box"); 
   if (quiz_box.style.display === "none") {
     quiz_box.style.display = "block";
   } else {
     quiz_box.style.display = "none";
-  }
+ }
 }
+// getting questions and options from array
+function showQuetions(index){
+  const question = document.querySelector(".question");
+  //creating a new span and div tag for question and option and passing the value using array index
+  let que_tag = '<span>'+ question[index].numb + ". " + question[index].question +'</span>';
+  let option_tag = '<div class="option_list"><span>'+ question[index].option[0] +'</span></div>'
+  + '<div class="option"><span>'+ question[index].option[1] +'</span></div>'
+  + '<div class="option"><span>'+ question[index].option[2] +'</span></div>'
+  + '<div class="option"><span>'+ question[index].option[3] +'</span></div>';
+  question.innerHTML = que_tag; //adding new span tag inside que_tag
+  option_list.innerHTML = option_tag; //adding new div tag inside option_tag
+}
+
+
