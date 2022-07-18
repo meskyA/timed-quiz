@@ -14,6 +14,7 @@ var score_areaEl = document.querySelector("#score_area");
 var initialEl = document.querySelector("#initial");
 var buttonDivEl = document.querySelector("#save_btn");
 var high_scoreEl = document.querySelector("#high_scores");
+var index = 0;
 
 let questions = [
   {
@@ -83,26 +84,66 @@ let questions = [
 //     quiz_box.style.display = "none";
 //   }
 // }
-start_btn.addEventListener('click', showQuestions);
+// start_btn.addEventListener('click', showQuestions(index));
+// quiz_box.classList.add("quiz_box"); 
+// function showQuestions() {
+//   var quiz_box = document.getElementById("quiz_box");
+//   quiz_box.classList.add("quiz_box"); 
+//   if (quiz_box.style.display === "none") {
+//     quiz_box.style.display = "block";
+//   } else {
+//     quiz_box.style.display = "none";
+//  }
+// }
+
+// function showQuetions(index){
+// const question = document.querySelector(".question");
+// //creating a new span and div tag for question and option and passing the value using array index
+// let que_tag = '<span>'+ questions[index].numb + ". " + questions[index].question +'</span>';
+// let option_tag = '<div class="option_list"><span>'+ questions[index].option[0] +'</span></div>'
+// + '<div class="option"><span>'+ questions[index].option[1] +'</span></div>'
+// + '<div class="option"><span>'+ questions[index].option[2] +'</span></div>'
+// + '<div class="option"><span>'+ questions[index].option[3] +'</span></div>';
+// question.innerHTML = que_tag; //adding new span tag inside que_tag
+// option_list.innerHTML = option_tag; //adding new div tag inside option_tag
+// }
+start_btn.addEventListener('click', init);
 quiz_box.classList.add("quiz_box"); 
-function showQuestions() {
+function init() {
   var quiz_box = document.getElementById("quiz_box");
   quiz_box.classList.add("quiz_box"); 
   if (quiz_box.style.display === "none") {
     quiz_box.style.display = "block";
+    showQuetions(index);
   } else {
     quiz_box.style.display = "none";
  }
 }
 
 function showQuetions(index){
-const question = document.querySelector(".question");
+const question = document.querySelector(".question", "option_list");
 //creating a new span and div tag for question and option and passing the value using array index
 let que_tag = '<span>'+ questions[index].numb + ". " + questions[index].question +'</span>';
-let option_tag = '<div class="option_list"><span>'+ questions[index].option[0] +'</span></div>'
-+ '<div class="option"><span>'+ questions[index].option[1] +'</span></div>'
-+ '<div class="option"><span>'+ questions[index].option[2] +'</span></div>'
-+ '<div class="option"><span>'+ questions[index].option[3] +'</span></div>';
-question.innerHTML = que_tag; //adding new span tag inside que_tag
-option_list.innerHTML = option_tag; //adding new div tag inside option_tag
+let option_tag = '<div class="option_list"><span>'+ questions[index].options[0] +'</span></div>'
++ '<div class="option"><span>'+ questions[index].options[1] +'</span></div>'
++ '<div class="option"><span>'+ questions[index].options[2] +'</span></div>'
++ '<div class="option"><span>'+ questions[index].options[3] +'</span></div>';
+question.innerHTML = que_tag; 
+option_list.innerHTML = option_tag; 
 }
+
+// next_btn.addEventListener('click', init);
+// option_list.classList.add("quiz_box"); 
+// function init() {
+//   var option_list = document.querySelector(".option_list");
+//   option_list.classList.add("option_list"); 
+//   if (option_list.style.display === "none") {
+//     option_list.style.display = "block";
+//     showQuetions(index);
+//   } else {
+//     option_list.style.display = "none";
+//  }
+// }
+// function showOptions(index);
+// const option_list = querySelector(".option_list");
+// let option_tag = '<div class="option_list"><span>'+ questions[index].options[0] +'</span></div>'
