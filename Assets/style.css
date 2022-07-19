@@ -151,7 +151,7 @@
     justify-content: space-between;
 
 }
-.next_btn {
+.question .next_btn {
     height: 45px;
     padding: 0 15px;
     font-size: 20px;

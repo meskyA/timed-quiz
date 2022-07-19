@@ -114,23 +114,80 @@ function init() {
   quiz_box.classList.add("quiz_box"); 
   if (quiz_box.style.display === "none") {
     quiz_box.style.display = "block";
-    showQuetions(index);
+    showQuestions(index);
   } else {
     quiz_box.style.display = "none";
  }
 }
 
-function showQuetions(index){
-const question = document.querySelector(".question", "option_list");
+function showQuestions(index){
+const question = document.querySelector(".question");
+// var button = document.querySelector(".next_btn");
 //creating a new span and div tag for question and option and passing the value using array index
 let que_tag = '<span>'+ questions[index].numb + ". " + questions[index].question +'</span>';
-let option_tag = '<div class="option_list"><span>'+ questions[index].options[0] +'</span></div>'
+let option_tag = '<div class="option"><span>'+ questions[index].options[0] +'</span></div>'
 + '<div class="option"><span>'+ questions[index].options[1] +'</span></div>'
 + '<div class="option"><span>'+ questions[index].options[2] +'</span></div>'
 + '<div class="option"><span>'+ questions[index].options[3] +'</span></div>';
+// + '<div class = "next_btn"><button>'+button.next_btn+'</button></div>';
 question.innerHTML = que_tag; 
-option_list.innerHTML = option_tag; 
+option_list.innerHTML = option_tag;
 }
+// next_btn.addEventListener('click', button);
+// function button() {
+//   document.querySelector(".next_btn").innerHTML="Next";
+
+// }
+// const next_btn = document.querySelector(".next_btn"); 
+option[1].addEventListener("click", function(){
+  selectOption(option[1].textContent);
+});
+option[2].addEventListener("click", function(){
+  selectOption(option[2].textContent);
+});
+option[3].addEventListener("click", function(){
+  selectOption(option[3].textContent);
+});
+option[4].addEventListener("click", function(){
+  selectOption(option[4].textContent);
+});
+
+function nextQuestion(){
+  var currentQuestion = questions[currentQuestionIndex];
+  questionElement.textContent = currentQuestion.question;
+  option[1].textContent = quextion [currentQuestionIndex].option[1];
+  option[2].textContent = quextion [currentQuestionIndex].option[2];
+  option[3].textContent = quextion [currentQuestionIndex].option[3];
+  option[4].textContent = quextion [currentQuestionIndex].option[4];
+  }
+  function selectAnswer(selectAnswer){
+    var correctAnswer = question [currentQuestionIndex].correctAnswer;
+    if (selectAnswer===correctAnswer) {
+      alert ("Correct!");
+} else {
+  alert ("Wrong!");
+}
+  }
+// const bottom_ques_counter = document.querySelector("footer .total_que");
+// // if Next Que button clicked
+// next_btn.onclick = ()=>{
+//   if(que_count < questions.length - 1){ //if question count is less than total question length
+//       que_count++; //increment the que_count value
+//       que_numb++; //increment the que_numb value
+//       showQuetions(que_count); //calling showQestions function
+//       queCounter(que_numb); //passing que_numb value to queCounter
+//       clearInterval(counter); //clear counter
+//       clearInterval(counterLine); //clear counterLine
+//       startTimer(timeValue); //calling startTimer function
+//       startTimerLine(widthValue); //calling startTimerLine function
+//       timeText.textContent = "Time Left"; //change the timeText to Time Left
+//       next_btn.classList.remove("show"); //hide the next button
+//   }else{
+//       clearInterval(counter); //clear counter
+//       clearInterval(counterLine); //clear counterLine
+//       showResult(); //calling showResult function
+//   }
+// }
 
 // next_btn.addEventListener('click', init);
 // option_list.classList.add("quiz_box"); 
