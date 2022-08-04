@@ -1,20 +1,51 @@
 //selecting all required elements
+var quiz_box= document.getElementById("quiz_box");
+var startDiv = document.getElementById("start");
+var startQuizBtn = document.getElementById("start-quiz-button");
 
-var start_btn = document.querySelector(".start_btn");
-var quiz_box= document.querySelector("#quiz_box");
-var question = document.querySelector(".question");
-var timer = document.querySelector(".timer");
-var time_line = document.querySelector("header .time_line");
-var time_text = document.querySelector(".timer .time_left_txt");
+// timer
+
+var timer = document.getElementById("timer");
+var timeLeft = document.getElementById("htimeLeft");
+var timesUp= document.getElementById("timesUp");
+
 var timeCount = document.querySelector(".timer .timer_sec");
+var  questionDiv = document.getElementById("questionDiv");
+// var question = document.querySelector(".question");
 var option_list = document.querySelector(".option_list");
 var next_btn = document.querySelector(".next_btn");
 var result_box = document.querySelector(".result_box");
 var score_areaEl = document.querySelector("#score_area");
-var initialEl = document.querySelector("#initial");
+
 var buttonDivEl = document.querySelector("#save_btn");
-var high_scoreEl = document.querySelector("#high_scores");
+
 var index = 0;
+
+// option buttons
+var option1 = document.getElementById("btn0");
+var option2 = document.getElementById("btn1");
+var option3 = document.getElementById("btn2");
+var option4 = document.getElementById("btn3");
+var answerCheck = document.getElementById("answerCheck");
+
+// Score section
+var score = document.getElementById("score");
+var highScores = document.getElementById("highScores");
+var highScoreList = document.querySelector("highScoreList");
+var goBackBtn = document.querySelector("goBackBtn");
+var clearHighScoreBtn = document.querySelector("clearHighScoreBtn");
+
+// Initials input
+var submitInitials = document.getElementById("submitInitialsBtn");
+var initials = document.getElementById("initials");
+var summary = document.getElementById("summary");
+
+
+var correctAnswer =0;
+var numb = 0;
+var scoreReault;
+var questionIndex = 0;
+
 
 let questions = [
   {
@@ -73,134 +104,249 @@ let questions = [
   ]
 },
 ];
-// start_btn.onclick = ()=>{
-//   quiz_box.classList.add("quiz_box"); 
-// }
-// function showQuestions() {
-//   var quiz_box = document.getElementById("quiz_box");
-//   if (quiz_box.style.display === "none") {
-//     quiz_box.style.display = "block";
-//   } else {
-//     quiz_box.style.display = "none";
-//   }
-// }
-// start_btn.addEventListener('click', showQuestions(index));
+var TotalTime = 120
+function timedQuiz(){
+  questionIndex =0;
+  TotalTime = 120;
+  timeLeft.textContent = TotalTime;
+  initialInput.textContent = "";
+   
+  startDiv.style.display = "none";
+  questionDiv.style.display = "block";
+  timer.style.display = "block";
+  timesUp.style.display = "none";
+
+
+  var startTimer = setInterval(function(){
+    TotalTime--;
+    timeLeft.textContent = TotalTime;
+    if(TotalTime <= 0) {
+      clearInterval(startTimer);
+      if(questionIndex < questions.length -1) {
+        gameOver();
+      }
+    }
+  }, 1000);
+
+showQuestions();
+};
+
+function showQuestions(index){
+  nextQuestion();
+}
+
+function nextQuestion() {
+  questions.textContent = questions[questionIndex].question;
+  options.textContent = questions[questionIndex.options[0]];
+  options.textContent = questions[questionIndex.options[1]];
+  options.textContent = questions[questionIndex.options[2]];
+  options.textContent = questions[questionIndex.options[3]];
+
+}
+
+function selectAnswer(answer){
+  var lineBreak = document.getElementById("lineBreak");
+  lineBreak.style.display = "block";
+  answerCheck.style.display = "block";
+
+  if (questions[questionIndex].answer===questions[questionIndex].options[answer]) {
+    // correct answer, add 1 point
+    correctAnswer++;
+    answerCheck.textContent ="correct!";
+  } else {
+    // for each wrong answer, take away 10 seconds from the timer
+    TotalTime-= 10;
+    timeLeft.textContent = TotalTime;
+    answerCheck.textContent = "Wrong! The correct answer is: " + question[questionIndex].answer;
+  }
+  questionIndex++;
+  // repeat for all the questions
+  if( questionIndex < questions.length) {
+    nextQuestion();
+  } else {
+    // when finished, run game over
+    gameOver();
+  }
+}
+function choose1() { selectAnswer[0];}
+function choose2() { selectAnswer[1];}
+function choose3() { selectAnswer[2];}
+function choose4() { selectAnswer[3];}
+
+// When timer is 0, it is game over!
+
+function gameOver() {
+  summary.style.display = "block";
+  questionDiv.style.display = "none";
+  startDiv.style.display = "none";
+  timer.style.display = "none";
+  timesUp.style.display = "block";
+
+  // show final score
+  finalScore.textContent = correctAnswer;
+}
+// enter initail and store high score in local storage
+
+function storeHighScores(event) {
+  event.preventDefault();
+
+  // initial input is blank
+  if (initialInput.value ==="") {
+    alert("Enter your initials here");
+    return;
+  }
+
+  startDiv.style.display = "none";
+  timer.style.display = "none";
+  timesUp.style.display = "none";
+  summary.style.display = "none";
+  highScores.style.display = "block";
+
+  // scores stored in local storage
+
+  var saveHighScores = localStorage.getItem("High Scores");
+
+  if (saveHighScores=== null) {
+    scoresArray = [];
+  } else {
+    scoresArray = JSON.parse(savedHighScors)
+  }
+  var userScore = {
+    initials: initialInput.value,
+    score: finalScore.textContent
+  }
+  console.log(userScore);
+  scoresArray.push(userScore);
+
+  var scoresArrayString = JSON.stringify(scoresArray);
+  window.localStorage.setItem("high scores", scoresArrayString);
+
+  // show high scores
+
+  showHighScores();
+}
+
+var i = 0;
+function showHighScores(){
+  startDiv.style.display = "none";
+  timer.style.display= "none";
+  questionDiv.style.display = "none";
+  summary.style.display = "none";
+  highScores.style.display = "block";
+
+  var savedHighScors = localStorage.getItem("high scores");
+
+  if(savedHighScors=== null) {
+    return;
+  }
+  console.log(savedHighScors);
+
+  var storedHighScores = JSON.parse(savedHighScors);
+
+  for (; i < storedHighScores.length; i++) {
+    var eachNewHighScore = document.createElement ("p");
+    eachNewHighScore.innerHTML = storedHighScores[i].initials + ": " + storedHighScores[i].score;
+
+  }
+}
+
+
+
+// Event Listener "click" to all buttons
+
+startQuizBtn.addEventListener('click', timedQuiz);
+option1.addEventListener("click", choose1);
+option2.addEventListener("click", choose2);
+option3.addEventListener("click", choose3);
+option4.addEventListener("click", choose4);
+
+submitInitialsBtn.addEventListener("click", function(event){
+  storeHighScores(event);
+});
+
+viewHighScore.addEventListener("click", function(event){
+  showHighScores(event);
+})
+
+goBackBtn.addEventListener("click", function(){
+  startDiv.style.display = "block";
+  highScores.style.display = "none";
+});
+
+clearHighScoreBtn.addEventListener("click", function(){
+  window.localStorage.removeItem("high scores");
+  listofHighScores.innerHTML = "High Scores Cleared";
+  listofHighScores.setAttritute("style", "font-family: 'Archivo', sans-serif; font-style: italic;")
+})
+
 // quiz_box.classList.add("quiz_box"); 
-// function showQuestions() {
+// function init() {
 //   var quiz_box = document.getElementById("quiz_box");
 //   quiz_box.classList.add("quiz_box"); 
 //   if (quiz_box.style.display === "none") {
 //     quiz_box.style.display = "block";
+//     showQuestions(index);
 //   } else {
 //     quiz_box.style.display = "none";
 //  }
 // }
 
-// function showQuetions(index){
+
 // const question = document.querySelector(".question");
+// // var button = document.querySelector(".next_btn");
 // //creating a new span and div tag for question and option and passing the value using array index
 // let que_tag = '<span>'+ questions[index].numb + ". " + questions[index].question +'</span>';
-// let option_tag = '<div class="option_list"><span>'+ questions[index].option[0] +'</span></div>'
-// + '<div class="option"><span>'+ questions[index].option[1] +'</span></div>'
-// + '<div class="option"><span>'+ questions[index].option[2] +'</span></div>'
-// + '<div class="option"><span>'+ questions[index].option[3] +'</span></div>';
-// question.innerHTML = que_tag; //adding new span tag inside que_tag
-// option_list.innerHTML = option_tag; //adding new div tag inside option_tag
-// }
-start_btn.addEventListener('click', init);
-quiz_box.classList.add("quiz_box"); 
-function init() {
-  var quiz_box = document.getElementById("quiz_box");
-  quiz_box.classList.add("quiz_box"); 
-  if (quiz_box.style.display === "none") {
-    quiz_box.style.display = "block";
-    showQuestions(index);
-  } else {
-    quiz_box.style.display = "none";
- }
-}
+// let option_tag = '<div class="option"><span>'+ questions[index].options[0] +'</span></div>'
+// + '<div class="option"><span>'+ questions[index].options[1] +'</span></div>'
+// + '<div class="option"><span>'+ questions[index].options[2] +'</span></div>'
+// + '<div class="option"><span>'+ questions[index].options[3] +'</span></div>';
+// // + '<div class = "next_btn"><button>'+button.next_btn+'</button></div>';
+// question.innerHTML = que_tag; 
+// option_list.innerHTML = option_tag;
 
-function showQuestions(index){
-const question = document.querySelector(".question");
-// var button = document.querySelector(".next_btn");
-//creating a new span and div tag for question and option and passing the value using array index
-let que_tag = '<span>'+ questions[index].numb + ". " + questions[index].question +'</span>';
-let option_tag = '<div class="option"><span>'+ questions[index].options[0] +'</span></div>'
-+ '<div class="option"><span>'+ questions[index].options[1] +'</span></div>'
-+ '<div class="option"><span>'+ questions[index].options[2] +'</span></div>'
-+ '<div class="option"><span>'+ questions[index].options[3] +'</span></div>';
-// + '<div class = "next_btn"><button>'+button.next_btn+'</button></div>';
-question.innerHTML = que_tag; 
-option_list.innerHTML = option_tag;
-}
 // next_btn.addEventListener('click', button);
 // function button() {
 //   document.querySelector(".next_btn").innerHTML="Next";
 
 // }
+// options.addEventListener("click", function(){
+//   index++
+//   showQuestions(index)
+// })
+
+// option.addEventListener("click, function"() {
+//   selectAnswer(_option);
+// });
 // const next_btn = document.querySelector(".next_btn"); 
-option[1].addEventListener("click", function(){
-  selectOption(option[1].textContent);
-});
-option[2].addEventListener("click", function(){
-  selectOption(option[2].textContent);
-});
-option[3].addEventListener("click", function(){
-  selectOption(option[3].textContent);
-});
-option[4].addEventListener("click", function(){
-  selectOption(option[4].textContent);
-});
+// option[1].addEventListener("click", function(){
+//   selectOption(option[1].textContent);
+// });
+// option[2].addEventListener("click", function(){
+//   selectOption(option[2].textContent);
+// });
+// option[3].addEventListener("click", function(){
+//   selectOption(option[3].textContent);
+// });
+// option[4].addEventListener("click", function(){
+//   selectOption(option[4].textContent);
+// });
+// var nextQuestion = nextQuestion();
 
-function nextQuestion(){
-  var currentQuestion = questions[currentQuestionIndex];
-  questionElement.textContent = currentQuestion.question;
-  option[1].textContent = quextion [currentQuestionIndex].option[1];
-  option[2].textContent = quextion [currentQuestionIndex].option[2];
-  option[3].textContent = quextion [currentQuestionIndex].option[3];
-  option[4].textContent = quextion [currentQuestionIndex].option[4];
-  }
-  function selectAnswer(selectAnswer){
-    var correctAnswer = question [currentQuestionIndex].correctAnswer;
-    if (selectAnswer===correctAnswer) {
-      alert ("Correct!");
-} else {
-  alert ("Wrong!");
-}
-  }
-// const bottom_ques_counter = document.querySelector("footer .total_que");
-// // if Next Que button clicked
-// next_btn.onclick = ()=>{
-//   if(que_count < questions.length - 1){ //if question count is less than total question length
-//       que_count++; //increment the que_count value
-//       que_numb++; //increment the que_numb value
-//       showQuetions(que_count); //calling showQestions function
-//       queCounter(que_numb); //passing que_numb value to queCounter
-//       clearInterval(counter); //clear counter
-//       clearInterval(counterLine); //clear counterLine
-//       startTimer(timeValue); //calling startTimer function
-//       startTimerLine(widthValue); //calling startTimerLine function
-//       timeText.textContent = "Time Left"; //change the timeText to Time Left
-//       next_btn.classList.remove("show"); //hide the next button
-//   }else{
-//       clearInterval(counter); //clear counter
-//       clearInterval(counterLine); //clear counterLine
-//       showResult(); //calling showResult function
+// function nextQuestion(){
+//   var currentQuestion = questions[currentQuestionIndex];
+//   questionElement.textContent = currentQuestion.question;
+//   option[1].textContent = quextion [currentQuestionIndex].option[1];
+//   option[2].textContent = quextion [currentQuestionIndex].option[2];
+//   option[3].textContent = quextion [currentQuestionIndex].option[3];
+//   option[4].textContent = quextion [currentQuestionIndex].option[4];
 //   }
-// }
 
-// next_btn.addEventListener('click', init);
-// option_list.classList.add("quiz_box"); 
-// function init() {
-//   var option_list = document.querySelector(".option_list");
-//   option_list.classList.add("option_list"); 
-//   if (option_list.style.display === "none") {
-//     option_list.style.display = "block";
-//     showQuetions(index);
-//   } else {
-//     option_list.style.display = "none";
-//  }
+//   function selectAnswer(selectAnswer){
+//     var correctAnswer = question [currentQuestionIndex].correctAnswer;
+//     if (selectAnswer===correctAnswer) {
+//       alert ("Correct!");
+// } else {
+//   alert ("Wrong!");
 // }
-// function showOptions(index);
-// const option_list = querySelector(".option_list");
-// let option_tag = '<div class="option_list"><span>'+ questions[index].options[0] +'</span></div>'
+//   }
+// nextQuestion();
