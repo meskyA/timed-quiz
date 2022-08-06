@@ -1,12 +1,3 @@
-// 
-// var next_btn = document.querySelector(".next_btn");
-// var result_box = document.querySelector(".result_box");
-
-// var score_areaEl = document.querySelector("#score_area");
-// var timeCount = document.querySelector(".timer .timer_sec");
-// var buttonDivEl = document.querySelector("#save_btn");
-
-
 // selecting all required elements
 
 //  Start Button 
@@ -49,7 +40,7 @@ var initials = document.getElementById("initials")
 var summary = document.getElementById("summary");
 
 
-var correctAns =0;
+var correctAns = 0;
 var numb = 0;
 var scoreReault;
 var questionIndex = 0;
@@ -83,18 +74,18 @@ const questions = [
 {
   numb: 3,
   question: "Methods in JavaScript are _______________",
-  correctAnswer: "Actions that can be performed on objects",
-  options: [
-    "Actions that can be performed on objects.",
+  correctAnswer: "Actions that can be performed on objects.",
+  options: [  
     "A systematic plan.",
     "A complex way of performing a task",
+    "Actions that can be performed on objects.",
     "A particular form of procedure for accomplishing something.",
   ]
 },
 {
   numb: 4,
   question: "What are the two ways to invoke a function?",
-  correctAnswer: "Pass by value or pass by reference",
+  correctAnswer: "Pass by value or pass by reference.",
   options: [
     "By identifying with ID or class.",
     "Pass by value or pass by reference.",
@@ -116,10 +107,10 @@ const questions = [
 ];
 
 // Start timer at the click of start button
-var TotalTime = 120
+var TotalTime = 60;
 function timedQuiz(){
   questionIndex =0;
-  TotalTime = 120;
+  TotalTime = 60;
   timeLeft.textContent = TotalTime;
   initials.textContent = "";
    
@@ -172,9 +163,11 @@ function selectAnswer(correctAnswer){
     // for each wrong answer, take away 10 seconds from the timer
     TotalTime-= 10;
     timeLeft.textContent = TotalTime;
-    answerCheck.textContent = "Wrong! The correct answer is: " + questions[questionIndex].correctAnswer;
+    answerCheck.textContent = "Wrong!"
+   
   }
   // setTimeout()
+
   questionIndex++;
   // repeat for all the questions
   if( questionIndex < questions.length) {
@@ -206,10 +199,13 @@ function gameOver() {
 // enter initial and store high score in local storage
 
 function storeHighScores(event) {
-  event.preventDefault();
+  if(event){
+    event.preventDefault();
+}
+  // event.preventDefault();
 
   // initial input is blank
-  if (initialInput.value ==="") {
+  if (initials.value ==="") {
     alert("Enter your initials here");
     return;
   }
@@ -230,7 +226,7 @@ function storeHighScores(event) {
     scoresArray = JSON.parse(savedHighScores)
   }
   var userScore = {
-    initials: initialInput.value,
+    initials: initials.value,
     score: finalScore.textContent
   }
   console.log(userScore);
@@ -264,6 +260,7 @@ function showHighScores(){
   for (; i < storedHighScores.length; i++) {
     var eachNewHighScore = document.createElement ("p");
     eachNewHighScore.innerHTML = storedHighScores[i].initials + ": " + storedHighScores[i].score;
+    highScoreList.appendChild(eachNewHighScore);
 
   }
 }
@@ -291,78 +288,6 @@ goBackBtn.addEventListener("click", function(){
 
 clearHighScoreBtn.addEventListener("click", function(){
   window.localStorage.removeItem("high scores");
-  listofHighScores.innerHTML = "High Scores Cleared";
-  listofHighScores.setAttritute("style", "font-family: 'Archivo', sans-serif; font-style: italic;")
+  highScoreList.innerHTML = "High Scores Cleared";
+ 
 });
-
-// quiz_box.classList.add("quiz_box"); 
-// function init() {
-//   var quiz_box = document.getElementById("quiz_box");
-//   quiz_box.classList.add("quiz_box"); 
-//   if (quiz_box.style.display === "none") {
-//     quiz_box.style.display = "block";
-//     showQuestions(index);
-//   } else {
-//     quiz_box.style.display = "none";
-//  }
-// }
-
-
-// const question = document.querySelector(".question");
-// // var button = document.querySelector(".next_btn");
-// //creating a new span and div tag for question and option and passing the value using array index
-// let que_tag = '<span>'+ questions[index].numb + ". " + questions[index].question +'</span>';
-// let option_tag = '<div class="option"><span>'+ questions[index].options[0] +'</span></div>'
-// + '<div class="option"><span>'+ questions[index].options[1] +'</span></div>'
-// + '<div class="option"><span>'+ questions[index].options[2] +'</span></div>'
-// + '<div class="option"><span>'+ questions[index].options[3] +'</span></div>';
-// // + '<div class = "next_btn"><button>'+button.next_btn+'</button></div>';
-// question.innerHTML = que_tag; 
-// option_list.innerHTML = option_tag;
-
-// next_btn.addEventListener('click', button);
-// function button() {
-//   document.querySelector(".next_btn").innerHTML="Next";
-
-// }
-// options.addEventListener("click", function(){
-//   index++
-//   showQuestions(index)
-// })
-
-// option.addEventListener("click, function"() {
-//   selectAnswer(_option);
-// });
-// const next_btn = document.querySelector(".next_btn"); 
-// option[1].addEventListener("click", function(){
-//   selectOption(option[1].textContent);
-// });
-// option[2].addEventListener("click", function(){
-//   selectOption(option[2].textContent);
-// });
-// option[3].addEventListener("click", function(){
-//   selectOption(option[3].textContent);
-// });
-// option[4].addEventListener("click", function(){
-//   selectOption(option[4].textContent);
-// });
-// var nextQuestion = nextQuestion();
-
-// function nextQuestion(){
-//   var currentQuestion = questions[currentQuestionIndex];
-//   questionElement.textContent = currentQuestion.question;
-//   option[1].textContent = quextion [currentQuestionIndex].option[1];
-//   option[2].textContent = quextion [currentQuestionIndex].option[2];
-//   option[3].textContent = quextion [currentQuestionIndex].option[3];
-//   option[4].textContent = quextion [currentQuestionIndex].option[4];
-//   }
-
-//   function selectAnswer(selectAnswer){
-//     var correctAnswer = question [currentQuestionIndex].correctAnswer;
-//     if (selectAnswer===correctAnswer) {
-//       alert ("Correct!");
-// } else {
-//   alert ("Wrong!");
-// }
-//   }
-// nextQuestion();
