@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./Assets/style.css" />
-        <title>Code Quiz</title>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./Assets/style.css" />
+    <title>Code Quiz</title>
 
 </head>
 
 <body>
-    <div class = "container">
+    <div class="container">
         <div class="row"></div>
         <div class="col text-left">
             <a href="#" id="viewHighScore">View High Scores</a>
@@ -27,34 +27,48 @@
 
         <!-- Quiz Container -->
         <section id="quiz_box">
-<!-- 
-            <div class="title">Quiz Challenge</div> -->
-            <!-- Timer section -->
+            <!-- 
+
+            <!- Timer section -->
             <div id="timer" class="col text-right">
                 <i class="far fa-clock"></i> Time: <span id="timeLeft">0</span>
             </div>
             <div id="timesUp" class="col text-right" style="display: none;">Time's
                 Up!</div>
-        </div>
-        <div class="time_line"></div>
 
+            <div class="time_line"></div>
+        </section>
         <!--Questions with multiple choice answers  -->
 
         <section id="questionDiv" style="display: none;">
-            <p id="question" class="pl-5 ml-2 justify-content-center
-                font-weight-bold"></p>
+            <p id="questionLead" class="pl-5 ml-2 pt-5 justify-content-center font-weight-bold"></p>
+            <div id="options"></div>
             <div class="pl-5 pt-2 pb-3 m-2 justify-content-center">
-                <p><button id="btn0" class="btn btn-btn"></button></p>
-                <p><button id="btn1" class="btn btn-btn"></button></p>
-                <p><button id="btn2" class="btn btn-btn"></button></p>
-                <p><button id="btn3" class="btn btn-btn"></button></p>
+                <p><button id="btn0" class="option1"></button></p>
+                <p><button id="btn1" class="option2"></button></p>
+                <p><button id="btn2" class="option3"></button></p>
+                <p><button id="btn3" class="boption4"></button></p>
                 <hr id="lineBreak" style="display: none" class="mt-4">
-                <p id = "answerCheck" style = "display: none;"></p>
+                <p id="answerCheck" style="display: none;"></p>
             </div>
-            <!-- <span></span>
-        </p> 
-        <div class ="option_list">
-            <div class = "option">
+        </section>
+        <div class="pl-5 ml-2 pt-5 justify-content-center font-weight-bold" id="summary" style="display: none;">
+            <div class="col-2"></div>
+            <div class="col-8 text-left">
+                <h2 class="font-weight-bold pt-2 pb-3 m-2">Your final score
+                    is<span id="finalScore"></span>!</h2>
+                <form>
+                    <p class="pt-2 pb-3 m-2">Enter your initials: <input id="initials"
+                            class="form-control pt-2 pb-3 mt-2" type="text">
+                        <button type="submit" id="submitInitialsBtn" class="btn
+                            btn-info mt-3">Submit</button>
+                    </p>
+                </form>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </div>
+    <!-- <div class = "option">
                 <span></span>                 
             </div>
             <div class = "option">
@@ -76,37 +90,17 @@
                         <span></span>
                     </div>
                     <div class = "option">
-                        <span></span>
-                    </div>                         -->
-            <!-- </div>  
-                 <button class= "next_btn">Next</button>
-                </div>
-            </div>
-        </div> -->
-            <!--   
-        <div class = "total_que"></div> -->
-            <div class="pl-5 ml-2 pt-5 justify-content-center font-weight-bold" id = "summary" style="display: none;">
-                <div class="col-2"></div>
-                <div class="col-8 text-left">
-                    <h2 class="font-weight-bold pt-2 pb-3 m-2">Your final score
-                        is<span id="finalScore"></span>!</h2>
-                    <form>
-                        <p class="pt-2 pb-3 m-2">Enter your initials: <input
-                                id="initials"
-                                class="form-control pt-2 pb-3 mt-2" type="text">
-                            <button type="submit" id="submitInitialsBtn"
-                                class="btn
-                                btn-info mt-3">Submit</button>
-                        </p>
-                    </form>
-                </div>
-                <div class="col-2"></div>
-            </div>
+                        <span></span> -->
+
+    <!-- <button class= "next_btn">Next</button> -->
+
+    <!-- <div class = "total_que"></div>  -->
 
 
-            <!-- Result box -->
 
-            <div class="result_box">
+    <!-- <-- Result box -->
+
+    <!-- <div class="result_box">
                 <div class="complete_text">Quiz Completed</div>
                 <div class="buttons">
                     <button class="over_btn">Done!</button>
@@ -115,34 +109,29 @@
                     <div id="score_area" class="score_area"></div>
                     <form id="initial" class="initial"></form>
                     <div id="save_btn" class="save_btn"></div>
-                </div>
-                <div id="highScores" class="pl-5 ml-4 pt-5
-                    justify-content-center font-weight-bold"
-                    style="display: none;">
-                    <h2 class="font-weight-bold pt-2 pb-3 mb-2">High Scores</h2>
-                    <div id="highScoreList" class="list-group list-group-flush
+                </div> -->
+    <!-- High score section -->
+    <div id="highScores" class="pl-5 ml-4 pt-5
+                    justify-content-center font-weight-bold" style="display: none;">
+        <h2 class="font-weight-bold pt-2 pb-3 mb-2">High Scores</h2>
+        <div id="highScoreList" class="list-group list-group-flush
                         pt-2 pb-3 mb-2"></div>
-                    <!-- Display high scores -->
-                    <p>
-                        <button type="submit" class="btn bnt-info mt-3 mr-3"
-                            id="goBackBtn">Go Back</button>
-                        <button type="submit" class="btn btn-info mt-3"
-                            id="clearHighScoreBtn">Clear High
-                            Scores</button>
+        <!-- Display high scores -->
+        <p>
+            <button type="submit" class="btn bnt-info mt-3 mr-3" id="goBackBtn">Go Back</button>
+            <button type="submit" class="btn btn-info mt-3" id="clearHighScoreBtn">Clear High
+                Scores</button>
 
-                    </p>
-                </div>
-
-            </div>
-        </section>
+        </p>
     </div>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-            crossorigin="anonymous"></script>
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-            crossorigin="anonymous"></script>
-        <script src="./Assets/js/script.js"></script>
-    </body>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+    <script src="./Assets/js/script.js"></script>
+</body>
+
 </html>

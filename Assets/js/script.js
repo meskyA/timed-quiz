@@ -1,62 +1,72 @@
-//selecting all required elements
+// 
+// var next_btn = document.querySelector(".next_btn");
+// var result_box = document.querySelector(".result_box");
+
+// var score_areaEl = document.querySelector("#score_area");
+// var timeCount = document.querySelector(".timer .timer_sec");
+// var buttonDivEl = document.querySelector("#save_btn");
+
+
+// selecting all required elements
+
+//  Start Button 
+
 var quiz_box= document.getElementById("quiz_box");
 var startDiv = document.getElementById("start");
 var startQuizBtn = document.getElementById("start-quiz-button");
 
+
 // timer
 
 var timer = document.getElementById("timer");
-var timeLeft = document.getElementById("htimeLeft");
+var timeLeft = document.getElementById("timeLeft");
 var timesUp= document.getElementById("timesUp");
 
-var timeCount = document.querySelector(".timer .timer_sec");
+// Questions
+
 var  questionDiv = document.getElementById("questionDiv");
-// var question = document.querySelector(".question");
-var option_list = document.querySelector(".option_list");
-var next_btn = document.querySelector(".next_btn");
-var result_box = document.querySelector(".result_box");
-var score_areaEl = document.querySelector("#score_area");
-
-var buttonDivEl = document.querySelector("#save_btn");
-
-var index = 0;
+var questionLead= document.getElementById("questionLead");
 
 // option buttons
-var option1 = document.getElementById("btn0");
-var option2 = document.getElementById("btn1");
-var option3 = document.getElementById("btn2");
-var option4 = document.getElementById("btn3");
+var options = document.getElementById("options");
+var options1 = document.getElementById("btn0");
+var options2 = document.getElementById("btn1");
+var options3 = document.getElementById("btn2");
+var options4 = document.getElementById("btn3");
 var answerCheck = document.getElementById("answerCheck");
+// var option_list = document.querySelector(".option_list");
 
 // Score section
 var score = document.getElementById("score");
 var highScores = document.getElementById("highScores");
-var highScoreList = document.querySelector("highScoreList");
-var goBackBtn = document.querySelector("goBackBtn");
-var clearHighScoreBtn = document.querySelector("clearHighScoreBtn");
+var highScoreList = document.getElementById("highScoreList");
+var clearHighScoreBtn = document.getElementById("clearHighScoreBtn");
+var goBackBtn = document.getElementById("goBackBtn");
 
 // Initials input
-var submitInitials = document.getElementById("submitInitialsBtn");
-var initials = document.getElementById("initials");
+var submitInitialsBtn = document.getElementById("submitInitialsBtn");
+var initials = document.getElementById("initials")
 var summary = document.getElementById("summary");
 
 
-var correctAnswer =0;
+var correctAns =0;
 var numb = 0;
 var scoreReault;
 var questionIndex = 0;
 
+var index = 0;
 
-let questions = [
+
+const questions = [
   {
   numb: 1,
   question: "JavaScript was invented by _______________?",
   correctAnswer: "Brendan Eich",
   options: [
-    "1. John Savage",
-    "2. Joshus Henggins",
-    "3. Brendan Eich",
-    "4. Solomon Kibbs",
+    "John Savage",
+    "Joshus Henggins",
+    "Brendan Eich",
+    "Solomon Kibbs",
   ]
 },
 {
@@ -64,10 +74,10 @@ let questions = [
   question: "What is a function in JavaScript?",
   correctAnswer: "A set of code that performs a specific task",
   options: [
-    "1. It is a function key used to coding",
-    "2. A system to isolate and style an element",
-    "3. A starter of JavaScript",
-    "4. A set of code that performs a specific task",
+    "It is a function key used to coding",
+    "A system to isolate and style an element",
+    "A starter of JavaScript",
+    "A set of code that performs a specific task",
   ]
 },
 {
@@ -75,10 +85,10 @@ let questions = [
   question: "Methods in JavaScript are _______________",
   correctAnswer: "Actions that can be performed on objects",
   options: [
-    "1. Actions that can be performed on objects.",
-    "2. A systematic plan.",
-    "3. A complex way of performing a task",
-    "4. A particular form of procedure for accomplishing something.",
+    "Actions that can be performed on objects.",
+    "A systematic plan.",
+    "A complex way of performing a task",
+    "A particular form of procedure for accomplishing something.",
   ]
 },
 {
@@ -86,10 +96,10 @@ let questions = [
   question: "What are the two ways to invoke a function?",
   correctAnswer: "Pass by value or pass by reference",
   options: [
-    "1. By identifying with ID or class.",
-    "2. Pass by value or pass by reference.",
-    "3. By opening box and curly brackets.",
-    "4. None of the above.",
+    "By identifying with ID or class.",
+    "Pass by value or pass by reference.",
+    "By opening box and curly brackets.",
+    "None of the above.",
   ]
 },
 {
@@ -97,19 +107,21 @@ let questions = [
   question: "Some of the most common uses of JavaScript are____?",
   correctAnswer: "All of the above.",
   options: [
-    "1. Web development",
-    "2. Web servers",
-    "3. Web applications",
-    "4. All of the above.",
+    "Web development",
+    "Web servers",
+    " Web applications",
+    "All of the above.",
   ]
 },
 ];
+
+// Start timer at the click of start button
 var TotalTime = 120
 function timedQuiz(){
   questionIndex =0;
   TotalTime = 120;
   timeLeft.textContent = TotalTime;
-  initialInput.textContent = "";
+  initials.textContent = "";
    
   startDiv.style.display = "none";
   questionDiv.style.display = "block";
@@ -128,37 +140,41 @@ function timedQuiz(){
     }
   }, 1000);
 
-showQuestions();
+showQuiz();
 };
 
-function showQuestions(index){
+function showQuiz(){
   nextQuestion();
 }
 
 function nextQuestion() {
-  questions.textContent = questions[questionIndex].question;
-  options.textContent = questions[questionIndex.options[0]];
-  options.textContent = questions[questionIndex.options[1]];
-  options.textContent = questions[questionIndex.options[2]];
-  options.textContent = questions[questionIndex.options[3]];
+  questionLead.textContent = questions[questionIndex].question;
+  options1.textContent = questions[questionIndex].options[0];
+  options2.textContent = questions[questionIndex].options[1];
+  options3.textContent = questions[questionIndex].options[2];
+  options4.textContent = questions[questionIndex].options[3];
 
 }
+// show correct or wrong after option is selected
 
-function selectAnswer(answer){
+function selectAnswer(correctAnswer){
+  // debugger
   var lineBreak = document.getElementById("lineBreak");
   lineBreak.style.display = "block";
   answerCheck.style.display = "block";
 
-  if (questions[questionIndex].answer===questions[questionIndex].options[answer]) {
+  if (questions[questionIndex].correctAnswer===correctAnswer) {
     // correct answer, add 1 point
-    correctAnswer++;
+    correctAns++;
+    // console.log(correctAns);
     answerCheck.textContent ="correct!";
   } else {
     // for each wrong answer, take away 10 seconds from the timer
     TotalTime-= 10;
     timeLeft.textContent = TotalTime;
-    answerCheck.textContent = "Wrong! The correct answer is: " + question[questionIndex].answer;
+    answerCheck.textContent = "Wrong! The correct answer is: " + questions[questionIndex].correctAnswer;
   }
+  // setTimeout()
   questionIndex++;
   // repeat for all the questions
   if( questionIndex < questions.length) {
@@ -168,10 +184,10 @@ function selectAnswer(answer){
     gameOver();
   }
 }
-function choose1() { selectAnswer[0];}
-function choose2() { selectAnswer[1];}
-function choose3() { selectAnswer[2];}
-function choose4() { selectAnswer[3];}
+function choose1(event) { selectAnswer(event.target.textContent);}
+function choose2(event) { selectAnswer(event.target.textContent);}
+function choose3(event) { selectAnswer(event.target.textContent);}
+function choose4(event) { selectAnswer(event.target.textContent);}
 
 // When timer is 0, it is game over!
 
@@ -181,11 +197,13 @@ function gameOver() {
   startDiv.style.display = "none";
   timer.style.display = "none";
   timesUp.style.display = "block";
+  initials.style.display = "block";
 
   // show final score
-  finalScore.textContent = correctAnswer;
+  finalScore.textContent = correctAns;
+  storeHighScores();
 }
-// enter initail and store high score in local storage
+// enter initial and store high score in local storage
 
 function storeHighScores(event) {
   event.preventDefault();
@@ -204,12 +222,12 @@ function storeHighScores(event) {
 
   // scores stored in local storage
 
-  var saveHighScores = localStorage.getItem("High Scores");
+  var savedHighScores = localStorage.getItem("High Scores");
 
-  if (saveHighScores=== null) {
+  if (savedHighScores=== null) {
     scoresArray = [];
   } else {
-    scoresArray = JSON.parse(savedHighScors)
+    scoresArray = JSON.parse(savedHighScores)
   }
   var userScore = {
     initials: initialInput.value,
@@ -250,15 +268,13 @@ function showHighScores(){
   }
 }
 
-
-
 // Event Listener "click" to all buttons
 
 startQuizBtn.addEventListener('click', timedQuiz);
-option1.addEventListener("click", choose1);
-option2.addEventListener("click", choose2);
-option3.addEventListener("click", choose3);
-option4.addEventListener("click", choose4);
+options1.addEventListener("click", choose1);
+options2.addEventListener("click", choose2);
+options3.addEventListener("click", choose3);
+options4.addEventListener("click", choose4);
 
 submitInitialsBtn.addEventListener("click", function(event){
   storeHighScores(event);
@@ -277,7 +293,7 @@ clearHighScoreBtn.addEventListener("click", function(){
   window.localStorage.removeItem("high scores");
   listofHighScores.innerHTML = "High Scores Cleared";
   listofHighScores.setAttritute("style", "font-family: 'Archivo', sans-serif; font-style: italic;")
-})
+});
 
 // quiz_box.classList.add("quiz_box"); 
 // function init() {
