@@ -1,8 +1,11 @@
-Timed-Quiz
+# Timed-Quiz
+
+## Description
+
 This is a timed coding quiz with multiple-choice questions. This app is written from scratch.
 The purpose of this project is to develop a timed quiz using HTML, CSS and JavaScript.
 
-Instructions
+## Instructions
 
 Click "Start Quiz"
 
@@ -17,13 +20,13 @@ Then it will show a list of saved high scores
 
 The user then will have the option to click on "Go Back" to start quiz again, or "Clear High Scores" to clear saved scores
 
-Installation
+## Installation
 
 Download or clone repository
 Open the main page (index.html) on your browser to view webpage
 Use a text editor to view all coding, Visual Studio Coding is recommended.
 
-Built With
+# Technologies Used
 
 HTML
 CSS
@@ -31,7 +34,7 @@ JavaScript
 Bootstrap
 
 
-Screen Shots
+## Screen Shots
 
 ![screen shot](/Assets/images/Quiz-Challenge-Screen-Shot-1.png)
 ![screen shot](Assets/images/Quiz-Challenge-Screen-Shot-2.png)
@@ -42,7 +45,7 @@ Screen Shots
 ![screen shot](Assets/images/Quiz-Challenge-Screen-Shot-7.png)
 ![screen shot](Assets/images/Quiz-Challenge-Screen-Shot-8.png)
 
-Links
+## Links
 
 https://github.com/meskyA/timed-quiz
 https://meskya.github.io/timed-quiz/
